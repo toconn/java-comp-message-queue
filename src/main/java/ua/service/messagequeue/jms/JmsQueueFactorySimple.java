@@ -143,6 +143,7 @@ public class JmsQueueFactorySimple implements QueueFactory {
 	@Override
 	public QueueServerListener newQueueServerListener (HostSettings settings, String queueName) throws JMSException {
 		
+		MessageFactory			messageFactory;
 		QueueConnection			queueConnection;
 		Destination				requestDestination;
 		MessageConsumer			requestMessageConsumer;
@@ -159,8 +160,10 @@ public class JmsQueueFactorySimple implements QueueFactory {
 
 		responseSession			= componentFactory.newSession (queueConnection);
 		responseProducer		= responseSession.createProducer (null);
+		
+		messageFactory			= new JmsMessageFactory (responseSession);
 
-		queueServerListener		= new JmsQueueServerListener (requestMessageConsumer, requestSession, responseProducer, responseSession);
+		queueServerListener		= new JmsQueueServerListener (messageFactory, requestMessageConsumer, requestSession, responseProducer, responseSession);
 		
 		return queueServerListener;
 	}

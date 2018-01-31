@@ -8,6 +8,12 @@ import javax.jms.TextMessage;
 
 import ua.service.messagequeue.MessageFactory;
 
+/**
+ * Allows queue consumers to create a message without knowing any of the behind complexity.
+ * 
+ * At least that is the idea.
+ *
+ */
 public class JmsMessageFactory implements MessageFactory {
 	
 	private Session session;

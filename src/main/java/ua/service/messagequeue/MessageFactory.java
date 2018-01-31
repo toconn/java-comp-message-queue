@@ -5,7 +5,6 @@ import javax.jms.TextMessage;
 
 /**
  * Allows classes to create queue messages without knowing anything about the queues themselves.
- *
  */
 public interface MessageFactory {
 	
